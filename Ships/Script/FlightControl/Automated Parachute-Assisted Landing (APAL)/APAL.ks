@@ -1,7 +1,7 @@
 // ================================================================================================================================================================================
 //
 //  Automated Parachute-Assisted Landing (APAL) v2025.12.17b (BETA)
-//  By: Maraketty's Astrodynamic Research Association (MARA)
+//  By: Maraketty's Astrodynamics Research Association (MARA)
 //  
 //  https://maraketty.com/
 //
@@ -24,10 +24,8 @@
 //
 // ================================================================================================================================================================================
 
-@LAZYGLOBAL OFF.
-
-RUN ONCE "0:/Utility/ProgramLoading.ks".
-RUN ONCE "0:/UI/HUD.ks".
+RUN ONCE "../../MARALib/library/vesselloading.ks".
+RUN ONCE "../../MARALib/library/uitools.ks".
 
 GLOBAL programName IS "Automated Parachute-Assisted Landing (APAL)".
 GLOBAL allParachutes IS LIST().
@@ -79,8 +77,6 @@ FUNCTION LogToTerminal {
 }
 
 // -- HUD & Messaging ---
-
-
 
 FUNCTION CanDraw {
     IF timeOfLastDraw = 0 {
