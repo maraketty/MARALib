@@ -1,3 +1,9 @@
+// vesselloading.ks
+// MIT License
+// https://github.com/maraketty/MARALib/
+
+@LAZYGLOBAL OFF.
+
 // Ease Factor (EF): Time in seconds to wait for a vessel to hopefully be fully loaded in order to avoid issues related to
 //  attempting to run scripts before the game engine is ready. This isn't an exact science that actually confirms that
 //  the vessel is fully loaded and ready, but a conservative estimate that should be enough for any vessel enough time to load.
@@ -5,8 +11,8 @@
 //  We caculate EF as one (1) second for every 15 parts on the vessel OR five (5) seconds, whichever is greater.
 //      EF = (PartCount / 15) OR 5
 FUNCTION GetEaseFactor {
-    SET partCount TO SHIP:ROOTPART:CHILDREN:LENGTH + 1.
-    SET easeFactor TO FLOOR(MAX((partCount / 15), 5)).
+    DECLARE LOCAL partCount TO SHIP:ROOTPART:CHILDREN:LENGTH + 1.
+    DECLARE LOCAL easeFactor TO FLOOR(MAX((partCount / 15), 5)).
     RETURN easeFactor.
 }
 
@@ -26,7 +32,7 @@ FUNCTION LoadProgramAfterVesselIsUnpacked {
 
     CLEARSCREEN.
     PRINT "STARTING: " + programName.
-    PRINT "EASING...".
+    PRINT "EASING... " + easeTime + "s".
     WAIT easeTime. // Time allowed for the vessel to settle/ease into the physics engine to avoid applying forces too early.
 }
 
